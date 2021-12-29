@@ -1,0 +1,135 @@
+extends layout
+
+block content
+
+    // container start
+    .container.mt-5
+        // 1st row start
+        .row
+
+            // 1st column start
+            .col-md-3.border.rounded(style='background-color: #e8ecec;')
+                .m-3
+                    .row.mt-2(style='margin-left:0px;')
+                        i.fas.fa-smog(style='font-size: 250%;')
+                    .row(style='margin-left:0px;')
+                        h5 December - February
+                    .row.mt-1
+                        .col-2
+                            p High
+                        .col-4
+                            p#high-1
+                                | 30
+                                sup o
+                                | C
+                        .col-2
+                            p Low
+                        .col-4
+                            p#low-1
+                                | 10
+                                sup o
+                                | C
+                    .row.mt-3(style='margin-left:0px;')
+                        button#btn-1.btn.btn-secondary(onclick='c_f_1()') Convert to Fahrenheit
+            // 1st column end
+
+            // 2nd column start
+            .col-md-3.border.rounded(style='background-color: #e8ecec;')
+                .m-3
+                    .row.mt-2(style='margin-left:0px;')
+                        i.fas.fa-snowflake(style='font-size: 250%;')
+                    .row(style='margin-left:0px;')
+                        h5 March - May
+                    .row.mt-1
+                        .col-2
+                            p High
+                        .col-4
+                            p#high-2
+                                | 30
+                                sup o
+                                | C
+                        .col-2
+                            p Low
+                        .col-4
+                            p#low-2
+                                | 10
+                                sup o
+                                | C
+                    .row.mt-3(style='margin-left:0px;')
+                        button#btn-2.btn.btn-secondary(onclick='c_f_2()') Convert to Fahrenheit
+            // 2nd column end
+
+            // 3rd column start
+            .col-md-3.border.rounded(style='background-color: #e8ecec;')
+                .m-3
+                    .row.mt-2(style='margin-left:0px;')
+                        i.fas.fa-sun(style='font-size: 250%;')
+                    .row(style='margin-left:0px;')
+                        h5 June - August
+                    .row.mt-1
+                        .col-2
+                            p High
+                        .col-4
+                            p#high-3
+                                | 30
+                                sup o
+                                | C
+                        .col-2
+                            p Low
+                        .col-4
+                            p#low-3
+                                | 10
+                                sup o
+                                | C
+                    .row.mt-3(style='margin-left:0px;')
+                        button#btn-3.btn.btn-secondary(onclick='c_f_3()') Convert to Fahrenheit
+            // 3rd column end
+
+            // 4th column start
+            .col-md-3.border.rounded(style='background-color: #e8ecec;')
+                .m-3
+                    .row.mt-2(style='margin-left:0px;')
+                        i.fas.fa-cloud-showers-heavy(style='font-size: 250%;')
+                    .row(style='margin-left:0px;')
+                        h5 September - November
+                    .row.mt-1
+                        .col-2
+                            p High
+                        .col-4
+                            p#high-4
+                                | 30
+                                sup o
+                                | C
+                        .col-2
+                            p Low
+                        .col-4
+                            p#low-4
+                                | 10
+                                sup o
+                                | C
+                    .row.mt-3(style='margin-left:0px;')
+                        button#btn-4.btn.btn-secondary(onclick='c_f_4()') Convert to Fahrenheit
+            // 4th column end
+        // 1st row end
+
+        // 2nd row start
+        .row
+            // Country Input Feild Start
+            .col.rounded.mt-4
+                .form-group.has-icon
+                    span.fas.fa-globe-americas.form-control-feedback(style='font-size: 20px;')
+                    input#country_input.form-control(type='text' placeholder='Search Country')
+            // Country Input Feild End
+            // City Input Feild Start
+            .col.rounded.mt-4
+                .form-group.has-icon
+                    span.fas.fa-city.form-control-feedback(style='font-size: 20px;')
+                    input#city_input.form-control(type='text' placeholder='Search City')
+            // City Input Feild End
+        // 2nd row end
+        // 3rd row start
+        .row
+            div(style='margin: auto;')
+                button.btn.btn-primary(type='button' onclick='dataFromInput()') Search
+        // 3rd row end
+    // container end

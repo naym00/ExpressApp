@@ -1,8 +1,18 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/* Search and Icon Start */
+.has-icon .form-control {
+  padding-left: 2.375rem;
 }
 
-a {
-  color: #00B7FF;
+.has-icon .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 1rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  margin-left: 10px;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
 }
+/* Search and Icon End */
