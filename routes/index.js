@@ -47,7 +47,7 @@ router.get("/all/bangladesh/dhaka", function (req, res, next) {
   var country = "bangladesh";
   var city = "dhaka";
   axios
-    .get("https://api.weatherapi.com/v1/history.json?key=1025c15bcdb04428906103946212912&q=" + country + "&q=" + city + "&dt=2021-12-27&end_dt=2021-12-28&aqi=yes")
+    .get("https://api.weatherapi.com/v1/history.json?key=1025c15bcdb04428906103946212912&q=" + country + "&q=" + city + "&dt=2021-12-25&end_dt=2021-12-26&aqi=yes")
     .then((response) => {
 
       var da_ta = response.data;
@@ -56,17 +56,34 @@ router.get("/all/bangladesh/dhaka", function (req, res, next) {
 
       var all_keys = Object.keys(jsObject);
 
-      // for (const key in jsObject) {
-      //   console.log(key);
-      // }
+      // console.log(jsObject[all_keys[1]].forecastday[0].day.maxtemp_c);  //Single Day Data
+      console.log(jsObject);
 
-      // expected output:
-      // "a: 1"
-      // "b: 2"
-      // "c: 3"
+      console.log(jsObject[all_keys[0]].localtime);
+      console.log(jsObject[all_keys[1]].forecastday[0].day.maxtemp_c);
+      
+      // console.log(jsObject[all_keys[1]].localtime);
+      // console.log(jsObject[all_keys[1]].forecastday[1].day.maxtemp_c);
+
+      // console.log(jsObject[all_keys[1]].localtime);
+      // console.log(jsObject[all_keys[1]].forecastday[2].day.maxtemp_c);
 
 
       console.log(all_keys);
+      // let daysWeather = jsObject.forecast.forecastday;
+      // daysWeather[0]   First Day
+      // daysWeather[0]   Second Day
+      // ...........................
+      // ...........................
+      // ...........................
+      // daysWeather[n]   nth Day
+
+      // jsObject.location.name         City
+      // jsObject.location.country      Country
+      // jsObject.location.localtime    Searching Time
+
+      console.log(jsObject.location.country);
+
 
     })
     .catch((error) => {
