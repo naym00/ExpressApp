@@ -1,9 +1,13 @@
 extends layout
 
 block content
-
     // container start
     .container.mt-5
+        .row
+            b
+                h2(style='color: rgb(9, 37, 46);') #{statement_1}
+        .row
+            p #{statement_2}
         // 1st row start
         .row
             b
@@ -35,8 +39,6 @@ block content
                                 | #{December_February_Low}
                                 sup o
                                 | C
-                    .row.mt-3(style='margin-left:0px;')
-                        button#btn-1.btn.btn-secondary(onclick='c_f_1()') Convert to Fahrenheit
             // 1st column end
 
             // 2nd column start
@@ -61,8 +63,6 @@ block content
                                 | #{March_May_Low}
                                 sup o
                                 | C
-                    .row.mt-3(style='margin-left:0px;')
-                        button#btn-2.btn.btn-secondary(onclick='c_f_2()') Convert to Fahrenheit
             // 2nd column end
 
             // 3rd column start
@@ -87,8 +87,6 @@ block content
                                 | #{June_August_Low}
                                 sup o
                                 | C
-                    .row.mt-3(style='margin-left:0px;')
-                        button#btn-3.btn.btn-secondary(onclick='c_f_3()') Convert to Fahrenheit
             // 3rd column end
 
             // 4th column start
@@ -113,29 +111,12 @@ block content
                                 | #{September_November_Low}
                                 sup o
                                 | C
-                    .row.mt-3(style='margin-left:0px;')
-                        button#btn-4.btn.btn-secondary(onclick='c_f_4()') Convert to Fahrenheit
             // 4th column end
         // 2nd row end
 
         // 3rd row start
         .row
-            // Country Input Feild Start
-            .col.rounded.mt-4
-                .form-group.has-icon
-                    span.fas.fa-globe-americas.form-control-feedback(style='font-size: 20px;')
-                    input#country_input.form-control(type='text' placeholder='Search Country')
-            // Country Input Feild End
-            // City Input Feild Start
-            .col.rounded.mt-4
-                .form-group.has-icon
-                    span.fas.fa-city.form-control-feedback(style='font-size: 20px;')
-                    input#city_input.form-control(type='text' placeholder='Search City')
-            // City Input Feild End
-        // 3rd row end
-        // 4th row start
-        .row
             div(style='margin: auto;')
-                button.btn.btn-primary(type='button' onclick='dataFromInput()') Search
-        // 4th row end
+                button#btn-for-convert.btn.btn-secondary(onclick='c_f()') Convert to Fahrenheit
+        // 3rd row end
     // container end

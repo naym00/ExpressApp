@@ -3,10 +3,24 @@ var router = express.Router();
 var axios = require("axios").default;
 var fs = require('fs');
 
+
+// router.get('/', function (req, res) {
+//   res.render('index', {title: 'HOME Page'});
+// })
+
 router.get("/all/:country/:city", function (req, res, next) {
 
   let country = req.params.country.toLowerCase();
   let city = req.params.city.toLowerCase();
+
+  let December_February_High = 0;
+  let December_February_Low = 0;
+  let March_May_High = 0;
+  let March_May_Low = 0;
+  let June_August_High = 0;
+  let June_August_Low = 0;
+  let September_November_High = 0;
+  let September_November_Low = 0;
 
   fs.readFile('country_city.txt', 'utf8', function (err, data) {
     if (data.length != 0) {
@@ -17,15 +31,6 @@ router.get("/all/:country/:city", function (req, res, next) {
           fs.readFile("json_info_files/" + country + "_" + city + '.json', 'utf8', function (err, data) {
             let jsObject = JSON.parse(data);
             let searching_time = jsObject.location.localtime;
-
-            let December_February_High = 0;
-            let December_February_Low = 0;
-            let March_May_High = 0;
-            let March_May_Low = 0;
-            let June_August_High = 0;
-            let June_August_Low = 0;
-            let September_November_High = 0;
-            let September_November_Low = 0;
 
             let forecast_object = jsObject.forecast.forecastday;
             for (let i in forecast_object) {
@@ -76,7 +81,12 @@ router.get("/all/:country/:city", function (req, res, next) {
             let snh = September_November_High;
             let snl = September_November_Low;
 
+            let capitalize_country = String.fromCharCode(country[0].charCodeAt() - 32).concat(country.substring(1, country.length));
+            let capitalize_city = String.fromCharCode(city[0].charCodeAt() - 32).concat(city.substring(1, city.length));
             res.render('index', {
+              title: capitalize_country + ", " + capitalize_city,
+              statement_1: "Weather in " + capitalize_city + ", " + capitalize_country,
+              statement_2: "View the weather forecast for " + capitalize_country + " before booking your " + capitalize_country + " vacation rental to confirm your best time to global.",
               December_February_High: (Math.floor(dfh) + (Math.floor(100 * (dfh - Math.floor(dfh)))) / 100).toString(),
               December_February_Low: (Math.floor(dfl) + (Math.floor(100 * (dfl - Math.floor(dfl)))) / 100).toString(),
 
@@ -91,8 +101,6 @@ router.get("/all/:country/:city", function (req, res, next) {
 
               searching_time: "Your Searching Time: " + searching_time.toString()
             });
-
-
           });
 
           flag = 1;
@@ -101,14 +109,14 @@ router.get("/all/:country/:city", function (req, res, next) {
       }
       if (flag == 0) {
         axios
-          .get("https://api.weatherapi.com/v1/history.json?key=1025c15bcdb04428906103946212912&q=" + country + "&q=" + city + "&dt=2021-12-23&end_dt=2021-12-29&aqi=yes")
+          .get("https://api.weatherapi.com/v1/history.json?key=353c28eb27db4f278e481755213112&q=" + country + "&q=" + city + "&dt=2021-12-24&end_dt=2021-12-30&aqi=yes")
           .then((response) => {
 
             let da_ta = response.data;
             let jsonObject = JSON.stringify(da_ta);
             let jsObject = JSON.parse(jsonObject);
-            console.log(jsObject.location.name.toLowerCase().localeCompare(city) + jsObject.location.country.toLowerCase().localeCompare(country));
-            if (jsObject.location.name.toLowerCase().localeCompare(city) + jsObject.location.country.toLowerCase().localeCompare(country) != 0) {
+
+            if (Math.abs(city.localeCompare(jsObject.location.name.toLowerCase())) + Math.abs(country.localeCompare(jsObject.location.country.toLowerCase())) == 0) {
               let searching_time = jsObject.location.localtime;
 
               let buffer_1 = new Buffer.from(country + "_" + city + "-");
@@ -143,16 +151,6 @@ router.get("/all/:country/:city", function (req, res, next) {
                     })
                 }
               })
-
-              let December_February_High = 0;
-              let December_February_Low = 0;
-              let March_May_High = 0;
-              let March_May_Low = 0;
-              let June_August_High = 0;
-              let June_August_Low = 0;
-              let September_November_High = 0;
-              let September_November_Low = 0;
-
               let forecast_object = jsObject.forecast.forecastday;
               for (let i in forecast_object) {
 
@@ -202,7 +200,13 @@ router.get("/all/:country/:city", function (req, res, next) {
               let snh = September_November_High;
               let snl = September_November_Low;
 
+              let capitalize_country = String.fromCharCode(country[0].charCodeAt() - 32).concat(country.substring(1, country.length));
+              let capitalize_city = String.fromCharCode(city[0].charCodeAt() - 32).concat(city.substring(1, city.length));
+
               res.render('index', {
+                title: capitalize_country + ", " + capitalize_city,
+                statement_1: "Weather in " + capitalize_city + ", " + capitalize_country,
+                statement_2: "View the weather forecast for " + capitalize_country + " before booking your " + capitalize_country + " vacation rental to confirm your best time to global.",
                 December_February_High: (Math.floor(dfh) + (Math.floor(100 * (dfh - Math.floor(dfh)))) / 100).toString(),
                 December_February_Low: (Math.floor(dfl) + (Math.floor(100 * (dfl - Math.floor(dfl)))) / 100).toString(),
 
@@ -219,9 +223,8 @@ router.get("/all/:country/:city", function (req, res, next) {
               });
             }
             else {
-              window.alert("Wrong URL!!");
+              res.render('invalid-url', { title: 'Invalid URL' });
             }
-
           })
           .catch((error) => {
             console.log(error);
@@ -230,14 +233,12 @@ router.get("/all/:country/:city", function (req, res, next) {
     }
     else {
       axios
-        .get("https://api.weatherapi.com/v1/history.json?key=1025c15bcdb04428906103946212912&q=" + country + "&q=" + city + "&dt=2021-12-23&end_dt=2021-12-29&aqi=yes")
+        .get("https://api.weatherapi.com/v1/history.json?key=353c28eb27db4f278e481755213112&q=" + country + "&q=" + city + "&dt=2021-12-24&end_dt=2021-12-30&aqi=yes")
         .then((response) => {
-
-          let da_ta = response.data;
-          let jsonObject = JSON.stringify(da_ta);
+          let jsonObject = JSON.stringify(response.data);
           let jsObject = JSON.parse(jsonObject);
 
-          if (jsObject.location.name.toLowerCase().localeCompare(city) + jsObject.location.country.toLowerCase().localeCompare(country) != 0) {
+          if (Math.abs(city.localeCompare(jsObject.location.name.toLowerCase())) + Math.abs(country.localeCompare(jsObject.location.country.toLowerCase())) == 0) {
             let searching_time = jsObject.location.localtime;
             let buffer_1 = new Buffer.from(country + "_" + city + "-");
             fs.open('country_city.txt', 'a', function (err, fd) {
@@ -271,15 +272,6 @@ router.get("/all/:country/:city", function (req, res, next) {
                   })
               }
             })
-
-            let December_February_High = 0;
-            let December_February_Low = 0;
-            let March_May_High = 0;
-            let March_May_Low = 0;
-            let June_August_High = 0;
-            let June_August_Low = 0;
-            let September_November_High = 0;
-            let September_November_Low = 0;
 
             let forecast_object = jsObject.forecast.forecastday;
             for (let i in forecast_object) {
@@ -330,7 +322,15 @@ router.get("/all/:country/:city", function (req, res, next) {
             let snh = September_November_High;
             let snl = September_November_Low;
 
+
+            let capitalize_country = String.fromCharCode(country[0].charCodeAt() - 32).concat(country.substring(1, country.length));
+            let capitalize_city = String.fromCharCode(city[0].charCodeAt() - 32).concat(city.substring(1, city.length));
+
             res.render('index', {
+
+              title: capitalize_country + ", " + capitalize_city,
+              statement_1: "Weather in " + capitalize_city + ", " + capitalize_country,
+              statement_2: "View the weather forecast for " + capitalize_country + " before booking your " + capitalize_country + " vacation rental to confirm your best time to global.",
               December_February_High: (Math.floor(dfh) + (Math.floor(100 * (dfh - Math.floor(dfh)))) / 100).toString(),
               December_February_Low: (Math.floor(dfl) + (Math.floor(100 * (dfl - Math.floor(dfl)))) / 100).toString(),
 
@@ -345,10 +345,9 @@ router.get("/all/:country/:city", function (req, res, next) {
 
               searching_time: "Your Searching Time: " + searching_time.toString()
             });
-
           }
           else {
-            window.alert("Wrong URL!!");
+            res.render('invalid-url', { title: 'Invalid URL' });
           }
 
         })
@@ -359,5 +358,4 @@ router.get("/all/:country/:city", function (req, res, next) {
   });
 
 });
-
 module.exports = router;

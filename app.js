@@ -9,6 +9,29 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+/* express-rate-limit start */
+
+// requiring express-rate-limit. this must be below the ### var app = express();
+const rateLimit = require('express-rate-limit');
+
+// this function is handling what will happen when the limit is reached
+const massage_for_exceeded_url_hitting = (req, res) => {
+  res.render('forbidden', { message: "Too many requests. You can request once in 10 seconds." });
+};
+
+// initializing express-rate-limit
+const apiRequestLimiter = rateLimit({
+  windowMs: 10 * 1000, // 10 seconds
+  max: 1, // limit each IP to 1 requests per windowMs
+  handler: massage_for_exceeded_url_hitting,
+});
+
+// difining the route group
+app.use('/', apiRequestLimiter, indexRouter);
+app.use('/users', usersRouter);
+
+/* express-rate-limit end */
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -19,16 +42,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
