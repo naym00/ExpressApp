@@ -1,6 +1,6 @@
 function c_f()
 {
-    let str_from_btn = document.getElementById("btn-for-convert").innerText;
+    let str_from_btn = document.getElementById("ctof").innerText;
     console.log("Clicked");
     if (str_from_btn.localeCompare("Convert to Fahrenheit") == 0)
     {

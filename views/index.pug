@@ -13,7 +13,6 @@ block content
             b
                 h3 #{searching_time}
         // 1st row end
-
         // 2nd row start
         .row
 
@@ -28,19 +27,26 @@ block content
                         .col-2
                             p High
                         .col-4
-                            p#high-1
-                                | #{December_February_High}
+                            p#high-1-c
+                                | #{December_February_High_C}
                                 sup o
                                 | C
+                            p#high-1-f(style='display: none;')
+                                | #{December_February_High_F}
+                                sup o
+                                | F
                         .col-2
                             p Low
                         .col-4
-                            p#low-1
-                                | #{December_February_Low}
+                            p#low-1-c
+                                | #{December_February_Low_C}
                                 sup o
                                 | C
+                            p#low-1-f(style='display: none;')
+                                | #{December_February_Low_F}
+                                sup o
+                                | F
             // 1st column end
-
             // 2nd column start
             .col-md-3.border.rounded(style='background-color: #e8ecec;')
                 .m-3
@@ -52,19 +58,26 @@ block content
                         .col-2
                             p High
                         .col-4
-                            p#high-2
-                                | #{March_May_High}
+                            p#high-2-c
+                                | #{March_May_High_C}
                                 sup o
                                 | C
+                            p#high-2-f(style='display: none;')
+                                | #{March_May_High_F}
+                                sup o
+                                | F
                         .col-2
                             p Low
                         .col-4
-                            p#low-2
-                                | #{March_May_Low}
+                            p#low-2-c
+                                | #{March_May_Low_C}
                                 sup o
                                 | C
+                            p#low-2-f(style='display: none;')
+                                | #{March_May_Low_F}
+                                sup o
+                                | F
             // 2nd column end
-
             // 3rd column start
             .col-md-3.border.rounded(style='background-color: #e8ecec;')
                 .m-3
@@ -76,19 +89,26 @@ block content
                         .col-2
                             p High
                         .col-4
-                            p#high-3
-                                | #{June_August_High}
+                            p#high-3-c
+                                | #{June_August_High_C}
                                 sup o
                                 | C
+                            p#high-3-f(style='display: none;')
+                                | #{June_August_High_F}
+                                sup o
+                                | F
                         .col-2
                             p Low
                         .col-4
-                            p#low-3
-                                | #{June_August_Low}
+                            p#low-3-c
+                                | #{June_August_Low_C}
                                 sup o
                                 | C
+                            p#low-3-f(style='display: none;')
+                                | #{June_August_Low_F}
+                                sup o
+                                | F
             // 3rd column end
-
             // 4th column start
             .col-md-3.border.rounded(style='background-color: #e8ecec;')
                 .m-3
@@ -100,23 +120,86 @@ block content
                         .col-2
                             p High
                         .col-4
-                            p#high-4
-                                | #{September_November_High}
+                            p#high-4-c
+                                | #{September_November_High_C}
                                 sup o
                                 | C
+                            p#high-4-f(style='display: none;')
+                                | #{September_November_High_F}
+                                sup o
+                                | F
                         .col-2
                             p Low
                         .col-4
-                            p#low-4
-                                | #{September_November_Low}
+                            p#low-4-c
+                                | #{September_November_Low_C}
                                 sup o
                                 | C
+                            p#low-4-f(style='display: none;')
+                                | #{September_November_Low_F}
+                                sup o
+                                | F
             // 4th column end
         // 2nd row end
-
         // 3rd row start
         .row
             div(style='margin: auto;')
-                button#btn-for-convert.btn.btn-secondary(onclick='c_f()') Convert to Fahrenheit
+                button#btn.btn.btn-secondary(onclick='c_f()') Convert to Fahrenheit
         // 3rd row end
     // container end
+    script.
+
+        function c_f()
+        {
+            let str_from_btn = document.getElementById("btn").innerText;
+            if (str_from_btn.localeCompare("Convert to Fahrenheit") == 0)
+            {
+                document.getElementById("high-1-c").style.display = "none";
+                document.getElementById("high-1-f").style.display = "initial";
+                document.getElementById("low-1-c").style.display = "none";
+                document.getElementById("low-1-f").style.display = "initial";
+
+                document.getElementById("high-2-c").style.display = "none";
+                document.getElementById("high-2-f").style.display = "initial";
+                document.getElementById("low-2-c").style.display = "none";
+                document.getElementById("low-2-f").style.display = "initial";
+
+                document.getElementById("high-3-c").style.display = "none";
+                document.getElementById("high-3-f").style.display = "initial";
+                document.getElementById("low-3-c").style.display = "none";
+                document.getElementById("low-3-f").style.display = "initial";
+
+                document.getElementById("high-4-c").style.display = "none";
+                document.getElementById("high-4-f").style.display = "initial";
+                document.getElementById("low-4-c").style.display = "none";
+                document.getElementById("low-4-f").style.display = "initial";
+
+                document.getElementById("btn").innerHTML = "Convert to Celsius";
+            }
+            else if (str_from_btn.localeCompare("Convert to Celsius") == 0)
+            {
+                
+                document.getElementById("high-1-c").style.display = "initial";
+                document.getElementById("high-1-f").style.display = "none";
+                document.getElementById("low-1-c").style.display = "initial";
+                document.getElementById("low-1-f").style.display = "none";
+
+                document.getElementById("high-2-c").style.display = "initial";
+                document.getElementById("high-2-f").style.display = "none";
+                document.getElementById("low-2-c").style.display = "initial";
+                document.getElementById("low-2-f").style.display = "none";
+
+                document.getElementById("high-3-c").style.display = "initial";
+                document.getElementById("high-3-f").style.display = "none";
+                document.getElementById("low-3-c").style.display = "initial";
+                document.getElementById("low-3-f").style.display = "none";
+
+                document.getElementById("high-4-c").style.display = "initial";
+                document.getElementById("high-4-f").style.display = "none";
+                document.getElementById("low-4-c").style.display = "initial";
+                document.getElementById("low-4-f").style.display = "none";
+
+                document.getElementById("btn").innerHTML = "Convert to Fahrenheit";
+            }
+        }
+        
