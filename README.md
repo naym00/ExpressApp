@@ -5,9 +5,9 @@ npm start
 ```
 Through this project you will be able to know the weather of any country.
 There is two way to know about the weather of a country.
-#If you hit to this url ```http://localhost:3000/all/bangladesh/khulna```
+### If you hit to this url ```http://localhost:3000/all/bangladesh/khulna```
 By hitting this URL you will get the information of Khulna city which is a city of Bangladesh.
-#If you hit to this url ```http://localhost:3000/all/bangladesh```
+### If you hit to this url ```http://localhost:3000/all/bangladesh```
 By hitting this url you will get the information of capital city which is Dhaka and which is also a city of Bangladesh.
 Note: If you hit the wrong url it will take you to an alert page.
 
