@@ -18,23 +18,23 @@ Next time the data will show from the file for that same country.
 And you are able to hit once in 10 seconds.
 If you hit more than one then it will show a message.
 
-# Main Process
+## Main Process
 In this project i have collected 7 days data. And days are dynamically handled.
 And have segmented these to four sections. 
 
-# Section1:
+### Section1:
 December February High Temperature: 1st day's high temperature.
 December February Low Temperature: 1st day's low temperature.
 
-# Section2:
+### Section2:
 March May High Temperature: Average of 2nd and 3rd day's high temperature.
 March May Low Temperature: Average of 2nd and 3rd day's low temperature.
 
-# Section3:
+### Section3:
 June August High Temperature: Average of 4th and 5th day's high temperature.
 June August Low Temperature: Average of 4th and 5th day's low temperature.
 
-# Section4:
+### Section4:
 September November High Temperature: Average of 6th and 7th day's high temperature.
 September November Low Temperature: Average of 6th and 7th day's low temperature.
 
