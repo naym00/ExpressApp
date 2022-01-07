@@ -39,5 +39,11 @@ September November High Temperature: Average of 6th and 7th day's high temperatu
 September November Low Temperature: Average of 6th and 7th day's low temperature.
 
 # Tools and Packages
-## Tools (1)NodeJS (ExpressJS) (2)Pug template (3) HTML (4) CSS
-## Packages (1)Axios (2)Express-Rate-Limit
+### Tools
+- [x] NodeJS (ExpressJS) 
+- [x] Pug template 
+- [x] HTML 
+- [x] CSS
+### Packages 
+- [x] Axios 
+- [x] Express-Rate-Limit
