@@ -38,7 +38,7 @@ June August Low Temperature: Average of 4th and 5th day's low temperature.
 September November High Temperature: Average of 6th and 7th day's high temperature.
 September November Low Temperature: Average of 6th and 7th day's low temperature.
 
-# Tools and Packages
+## Tools and Packages
 ### Tools
 - [x] NodeJS (ExpressJS) 
 - [x] Pug template 
